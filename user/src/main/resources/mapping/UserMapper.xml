@@ -10,7 +10,7 @@
    </select>
 
     <select id="count" resultType="int">
-        select count(*)from t_user
+        select count(*) from t_user
     </select>
 
     <insert id="save" parameterType="com.luojianhua.entity.User">
@@ -18,14 +18,12 @@
 	</insert>
 
 
-    <select id="findById" resultType="com.luojianhua.entity.User" >
+    <select id="findById" parameterType="int" resultType="com.luojianhua.entity.User" >
 		select * from t_user where id=#{id}
 	</select>
 
 
-    <update id="update" parameterType="com.luojianhua.entity.User">
-		update t_user set username = #{username},password = #{password},nickname = #{nickname},gender = #{gender},telephone=#{telephone},registerdate=#{registerdate},address=#{address} where id = #{id}
-	</update>
+
 
 
     <delete id="deleteById" parameterType="long">

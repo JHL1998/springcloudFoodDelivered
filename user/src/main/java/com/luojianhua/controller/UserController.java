@@ -32,10 +32,7 @@ public class UserController {
         userRepository.save(user);
 
     }
-    @PutMapping("/update")
-    public void update(@RequestBody User user){
-        userRepository.update(user);
-    }
+
 
     @DeleteMapping("/deleteById/{id}")
     public void deleteById(@PathVariable("id") long id){

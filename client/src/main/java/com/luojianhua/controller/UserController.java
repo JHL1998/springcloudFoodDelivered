@@ -36,8 +36,13 @@ public class UserController {
         return "redirect:/user/redirect/user_manage";
 
     }
+    @GetMapping("/findById/{id}")
+    public User findById(@PathVariable("id") long id){
+         return userFeign.findById(id);
+    }
 
 
+    //通过超链接删除，不是deleteMapping
     @GetMapping("/deleteById/{id}")
     public String deleteById(@PathVariable("id") long id){
         userFeign.deleteById(id);
