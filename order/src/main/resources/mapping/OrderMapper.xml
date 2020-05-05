@@ -8,6 +8,7 @@
       <result column="date" property="date"></result>
       <result column="state" property="state"></result>
      <association property="menu" select="com.luojianhua.repository.MenuRepository.findById" column="mid"></association>
+      <association property="user" select="com.luojianhua.repository.UserRepository.findById" column="uid"> </association>
   </resultMap>
 
    <select id="findAllById" resultMap="orderMap">
@@ -23,4 +24,15 @@
         select count(*) from t_order where uid=#{param1}
     </select>
 
+     <select id="findByState"  resultMap="orderMap">
+         select id,mid,uid,date,state from t_order where state=0  limit #{param1},#{param2}
+     </select>
+
+    <update id="updateState" parameterType="long">
+         update t_order set state=1 where id=#{id}
+    </update>
+
+    <select id="count" resultType="int">
+        select count(*) from t_order where state=0
+    </select>
 </mapper>

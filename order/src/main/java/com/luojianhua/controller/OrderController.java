@@ -32,4 +32,23 @@ public class OrderController {
     public int countById(@PathVariable("uid") int uid){
           return orderRepository.countById(uid);
     }
+
+    @GetMapping("findByState/{index}/{limit}")
+    public OrderVO findByState(@PathVariable("index") int index,
+                                   @PathVariable("limit") int limit){
+        OrderVO orderVO=new OrderVO();
+        orderVO.setCode(0);
+        orderVO.setCount(orderRepository.count());
+        orderVO.setMsg("");
+        orderVO.setData(orderRepository.findByState(index,limit));
+        return orderVO;
+    }
+
+    @GetMapping("updateState/{id}")
+    public void updateState(@PathVariable("id") long id){
+        orderRepository.updateState(id);
+
+    }
+
+
 }

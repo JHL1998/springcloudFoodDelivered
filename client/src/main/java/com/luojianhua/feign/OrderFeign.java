@@ -17,4 +17,11 @@ public interface OrderFeign {
     @GetMapping("/order/findAllById/{index}/{limit}/{uid}")
     OrderVO findById(@PathVariable("index") int index, @PathVariable("limit") int limit, @PathVariable("uid") int uid);
 
+    @GetMapping("/order/findByState/{index}/{limit}")
+    OrderVO findByState(@PathVariable("index") int index,
+                        @PathVariable("limit") int limit);
+
+
+    @GetMapping("/order/updateState/{id}")
+    void updateState(@PathVariable("id") long id);
 }

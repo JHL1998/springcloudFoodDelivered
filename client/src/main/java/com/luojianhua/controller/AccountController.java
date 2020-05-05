@@ -29,6 +29,8 @@ public class AccountController {
            //这里的object 变成了LinkedHashMap,先强转
         LinkedHashMap<String,Object> map=(LinkedHashMap)object;
            String res=null;
+        String idStr=null;
+        long id=0L;
            if(object==null){
                //登录失败
                res="login";
@@ -37,8 +39,8 @@ public class AccountController {
                    case "user":
                        User user=new User();
                        //id与用户相关联，设计业务
-                      String idStr=String.valueOf(map.get("id"));
-                      long id=Long.parseLong(idStr);
+                       idStr=String.valueOf(map.get("id"));
+                       id=Long.parseLong(idStr);
                       //这里在前端展示只需要nickName
                       String nickname=(String)map.get("nickname");
                       user.setId(id);
@@ -49,8 +51,14 @@ public class AccountController {
                        res="index";
                        break;
                    case "admin":
-                       session.setAttribute("admin",(Admin)object);
-                       res="";
+                       Admin admin=new Admin();
+                      idStr=String.valueOf(map.get("id"));
+                      id=Long.parseLong(idStr);
+                      String newUsername=String.valueOf(map.get("username"));
+                      admin.setId(id);
+                      admin.setUsername(newUsername);
+                       session.setAttribute("admin",admin);
+                       res="main";
                        break;
                }
            }

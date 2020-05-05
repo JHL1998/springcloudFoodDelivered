@@ -50,7 +50,7 @@ public class MenuController {
     @PostMapping("/save")
     public String save(Menu menu){
         menuFeign.save(menu);
-        return "redirect:/menu/redirect/index";
+        return "redirect:/menu/redirect/menu_manage";
 
     }
 
@@ -68,7 +68,7 @@ public class MenuController {
     @PostMapping("/update")
     public String update( Menu menu){
          menuFeign.update(menu);
-         return "redirect:/menu/redirect/index";
+         return "redirect:/menu/redirect/menu_manage";
     }
 }
 

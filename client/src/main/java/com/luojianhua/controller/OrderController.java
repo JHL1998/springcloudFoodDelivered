@@ -38,4 +38,18 @@ public class OrderController {
         User user=(User)session.getAttribute("user");
         return orderFeign.findById((page-1)*limit,limit,(int)user.getId());
     }
+
+    @GetMapping("/findByState")
+    @ResponseBody
+    public OrderVO findByState(@RequestParam("page") int page,
+                               @RequestParam("limit") int limit){
+
+        return orderFeign.findByState((page-1)*limit,limit);
+    }
+
+    @GetMapping("updateState/{id}")
+    public String updateState(@PathVariable("id") long id){
+        orderFeign.updateState(id);
+        return "redirect:/menu/redirect/order_handler";
+    }
 }
